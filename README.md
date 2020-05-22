@@ -86,5 +86,10 @@ There is only minimal input checking and processing before passing things off to
 Technically, you could also use `linetype` as a catch-all for the rest of the `labels`,`linecolor`, and `linewidth` arguments because `linetype` items are sent directly to `@gp`. As in, you could pass `"tit 'Expected' lw 3 lc rgb 'black' dt 2"` as a linetype if you wanted. If you find yourself doing this too much, you probably should just start using the regular `@gp` commands from Gnuplot.jl.
 
 
+## Contributing
+
+Any and all pull requests would be appreciated as long as it doesn't complicate the code too much. Would especially welcome any contributions that fix errors, bugs, or weird behaviors. 
+
+
 
 
