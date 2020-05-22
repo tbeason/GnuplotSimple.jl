@@ -9,23 +9,25 @@ export plot
 
 
 """
-`plot(x,Y; grid, scatter, title, xlab, ylab, key, labels, xr, yr, linetype, linewidth, linecolor, xlog, ylog)`
+`plot(x,Y; kwargs...)`
 
 A simple plot recipe for `Gnuplot.jl`.
 
 Required: vector-like `x` and vector or matrix-like `Y`.
 
-All keyword arguments are optional.
+All keyword arguments are optional:
 
 `title`, `xlab`, `ylab`, `key` should be strings.
 
-`grid`, `scatter`, `xlog`, `ylog` are boolean.
+`grid`, `scatter`, `xlog`, `ylog`, `mono` are boolean.
 
 `xr` and `yr` are like `[0,1]`. Use `NaN` for unbounded.
 
 `labels`, `linecolor`, `linetype` should be vectors of strings (at least as many as columns in `Y`).
 
 `linewidth` should be a vector of numbers.
+
+
 
 
 ```julia
@@ -36,7 +38,7 @@ y = x.^(1:3)'
 ```
 """
 function plot(x,Y; grid::Bool=true, scatter::Bool=false, title=nothing, xlab=nothing, ylab=nothing, key=nothing, labels=nothing, xr=[NaN,NaN], yr=[NaN,NaN],
-        linetype=nothing, linewidth=nothing, linecolor=nothing, xlog::Bool=false, ylog::Bool=false)
+        linetype=nothing, linewidth=nothing, linecolor=nothing, xlog::Bool=false, ylog::Bool=false, mono::Bool=false)
     # assertions and input processing
     @assert !isempty(x)
     @assert !isempty(Y)
@@ -53,6 +55,7 @@ function plot(x,Y; grid::Bool=true, scatter::Bool=false, title=nothing, xlab=not
     # plot setup
     out = Vector{Gnuplot.PlotElement}()
     grid && push!(out,PlotElement(cmds=["set grid"]))
+    mono && push!(out,PlotElement(cmds=["set monochrome"]))
     !isnothing(title) && push!(out, PlotElement(;tit=title))
     !isnothing(xlab) && push!(out, PlotElement(;xlabel=xlab))
     !isnothing(ylab) && push!(out, PlotElement(;ylabel=ylab))

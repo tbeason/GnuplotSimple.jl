@@ -25,6 +25,7 @@ The package only defines a plot recipe (called `plot`) and therefore **must** be
 using Gnuplot, GnuplotSimple
 ```
 
+Further, note that the name `plot` here will conflict with most other plotting packages. Therefore you should not also load something like Plots.jl in the same session, or if you do you should expect to prefix the command (`GnuplotSimple.plot`).
 
 
 ## Example
@@ -55,7 +56,7 @@ The plotting terminal stays active, so you can amend the plot or save it just as
 
 ## The Recipe
 
-`plot(x,Y; grid, scatter, title, xlab, ylab, key, labels, xr, yr, linetype, linewidth, linecolor, xlog, ylog)`
+`plot(x,Y; kwargs...)`
 
 
 Required: vector-like `x` and vector or matrix-like `Y`.
@@ -71,6 +72,7 @@ All keyword arguments are optional. I tried to stick to the `gnuplot` naming sch
  - `yr` range for y-axis
  - `xlog::Bool=false` logscale x-axis
  - `ylog::Bool=false` logscale y-axis
+ - `mono::Bool=false` produce monochrome plot
  - `labels` series labels (legend entries). Should be vector of strings (at least as many as columns in `Y`).
  - `linecolor` Vector of strings (at least as many as columns in `Y`) providing `rgb` colors (`"black"`,`"red"`,etc.).
  - `linewidth` Vector of numbers (at least as many as columns in `Y`) providing line widths.
