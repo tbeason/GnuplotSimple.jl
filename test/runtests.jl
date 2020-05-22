@@ -1,2 +1,2 @@
-using GnuplotSimple
+using GnuplotSimple, Gnuplot
 using Test

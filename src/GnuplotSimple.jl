@@ -5,6 +5,28 @@ import Gnuplot: PlotElement, DatasetText
 
 export plot
 
+
+
+
+"""
+`plot(x,Y; grid, scatter, title, xlab, ylab, key, labels, xr, yr, linetype, linewidth, linecolor, xlog, ylog)`
+
+A simple plot recipe for `Gnuplot.jl`.
+
+Required: vector-like `x` and vector or matrix-like `Y`.
+
+All keyword arguments are optional.
+`title`, `xlab`, `ylab`, `key` should be strings.
+`grid`, `scatter`, `xlog`,`ylog` are boolean.
+`labels`, `linecolor`, `linetype`, `linewidth` should be vectors of strings (at least as many as columns in `Y`).
+
+```julia
+using Gnuplot, GnuplotSimple
+x = 0:0.05:2
+y = x.^(1:3)'
+@gp plot(x,y; title="My Title",xlab="My x",ylab="My y",xr=[0,1],labels=["y1","y2","y3"])
+```
+"""
 function plot(x,Y; grid::Bool=true, scatter::Bool=false, title=nothing, xlab=nothing, ylab=nothing, key=nothing, labels=nothing, xr=[NaN,NaN], yr=[NaN,NaN],
         linetype=nothing, linewidth=nothing, linecolor=nothing, xlog::Bool=false, ylog::Bool=false)
     # assertions and input processing
@@ -43,7 +65,7 @@ function plot(x,Y; grid::Bool=true, scatter::Bool=false, title=nothing, xlab=not
         if !isnothing(linetype)
             if length(linetype) >= i
                 thislt = linetype[i]
-                plotstr = string(plotstr," lt $thislt")
+                plotstr = string(plotstr," $thislt")
             end
         end
         if !isnothing(linewidth)
