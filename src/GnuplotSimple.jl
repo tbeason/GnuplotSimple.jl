@@ -16,9 +16,17 @@ A simple plot recipe for `Gnuplot.jl`.
 Required: vector-like `x` and vector or matrix-like `Y`.
 
 All keyword arguments are optional.
+
 `title`, `xlab`, `ylab`, `key` should be strings.
-`grid`, `scatter`, `xlog`,`ylog` are boolean.
-`labels`, `linecolor`, `linetype`, `linewidth` should be vectors of strings (at least as many as columns in `Y`).
+
+`grid`, `scatter`, `xlog`, `ylog` are boolean.
+
+`xr` and `yr` are like `[0,1]`. Use `NaN` for unbounded.
+
+`labels`, `linecolor`, `linetype` should be vectors of strings (at least as many as columns in `Y`).
+
+`linewidth` should be a vector of numbers.
+
 
 ```julia
 using Gnuplot, GnuplotSimple

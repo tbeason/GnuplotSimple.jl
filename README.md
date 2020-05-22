@@ -67,11 +67,13 @@ All keyword arguments are optional. I tried to stick to the `gnuplot` naming sch
  - `key::String` Legend placement
  - `grid::Bool=true` show grid lines or not.
  - `scatter::Bool=false` set to `true` to use points instead of lines (for scatter plot or just because you hate lines).
+ - `xr` range for x-axis
+ - `yr` range for y-axis
  - `xlog::Bool=false` logscale x-axis
  - `ylog::Bool=false` logscale y-axis
  - `labels` series labels (legend entries). Should be vector of strings (at least as many as columns in `Y`).
  - `linecolor` Vector of strings (at least as many as columns in `Y`) providing `rgb` colors (`"black"`,`"red"`,etc.).
- - `linewidth` series labels (legend entries). Should be vector of strings (at least as many as columns in `Y`).
+ - `linewidth` Vector of numbers (at least as many as columns in `Y`) providing line widths.
  - `linetype` Vector of strings (at least as many as columns in `Y`) providing linetype commands. This allows for more flexibility than you probably deserve. Strings should contain the full linetype command as `gnuplot` would like it. The simplest forms would be `"dt 1"` for a solid line, `"dt 2"` for a dashed line, or `"dt 3"` for a dotted line, but you can also supply custom syntax like `"dt '..- '"`. See [here](http://gnuplot.sourceforge.net/demo/dashtypes.html) for visual examples of the styles. 
  
 For the keyword arguments that are vector-valued, if you supply fewer values than the series that you are plotting then `gnuplot` will just pick the remaining items for you. No guarantees what you'll end up with. Also note that those arguments _do_ need to be vectors, so even if you are supplying a single label it must be wrapped, eg. `["my only label"]`.
